@@ -2,10 +2,12 @@
 <launch>
 
     <arg name="vocabularty_path" default="$(find ORB_SLAM2_CUDA)/../../../Vocabulary/ORBvoc.txt" />
-    <arg name="camera_setting_path" default="$(find ORB_SLAM2_CUDA)/conf/g5.yaml" />
+    <arg name="camera_setting_path" default="$(find ORB_SLAM2_CUDA)/conf/g5_240.yaml" />
     <arg name="bUseViewer" default="true" />
-    <arg name="bEnablePublishROSTopic" default="true" />
-
+    <arg name="bEnablePublishROSTopic" default="false" />
+    <!--
+    <node pkg="rviz" type="rviz" name="my_rviz" args="-d $(find ORB_SLAM2_CUDA)/config/rviz_config.rviz" />
+    -->
     <node name="ORB_SLAM2_CUDA" pkg="ORB_SLAM2_CUDA" type="Mono" output="screen" 
     	args="$(arg vocabularty_path) $(arg camera_setting_path) $(arg bUseViewer) $(arg bEnablePublishROSTopic)">
   	</node>
