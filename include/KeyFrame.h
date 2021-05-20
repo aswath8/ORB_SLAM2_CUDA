@@ -44,7 +44,7 @@ class KeyFrame
 {
 public:
     KeyFrame(Frame &F, Map* pMap, KeyFrameDatabase* pKFDB);
-
+    void SetORBvocabulary(ORBVocabulary *porbv) {mpORBvocabulary=porbv;}
     // Pose functions
     void SetPose(const cv::Mat &Tcw);
     cv::Mat GetPose();

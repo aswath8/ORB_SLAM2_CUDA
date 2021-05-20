@@ -4,7 +4,7 @@
     <arg name="vocabularty_path" default="$(find ORB_SLAM2_CUDA)/../../../Vocabulary/ORBvoc.txt" />
     <arg name="camera_setting_path" default="$(find ORB_SLAM2_CUDA)/conf/g5_240.yaml" />
     <arg name="bUseViewer" default="true" />
-    <arg name="bEnablePublishROSTopic" default="false" />
+    <arg name="bEnablePublishROSTopic" default="true" />
     <!--
     <node pkg="rviz" type="rviz" name="my_rviz" args="-d $(find ORB_SLAM2_CUDA)/config/rviz_config.rviz" />
     -->

@@ -25,6 +25,8 @@
 #include <string>
 #include <thread>
 #include <opencv2/core/core.hpp>
+#include <sys/resource.h>
+
 
 /* Add this line to fix problem "Eigen deprecated"*/
 #include <unistd.h>
@@ -122,6 +124,11 @@ public:
     FrameDrawer* GetpFrameDrawer(void);
 
 private:
+
+    rlim_t GetCurrentCallStackSize ();
+    bool SetCallStackSize (const rlim_t kNewStackSize);
+
+    bool LoadMap(const string &filename);
 
     // Input sensor
     eSensor mSensor;

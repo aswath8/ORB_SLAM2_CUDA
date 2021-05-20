@@ -133,7 +133,7 @@ void ImageGrabber::GrabImage(const sensor_msgs::ImageConstPtr& msg)
 
     mpSLAMDATA->SaveTimePoint(ORB_SLAM2::SlamData::TimePointIndex::TIME_FINISH_SLAM_PROCESS);
 
-    mpSLAMDATA->CalculateAndPrintOutProcessingFrequency();
+    //mpSLAMDATA->CalculateAndPrintOutProcessingFrequency();
 
     if (Tcw.empty()) {
       return;

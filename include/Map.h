@@ -23,6 +23,8 @@
 
 #include "MapPoint.h"
 #include "KeyFrame.h"
+#include "BoostArchiver.h"
+
 #include <set>
 
 #include <mutex>
@@ -73,6 +75,12 @@ protected:
     long unsigned int mnMaxKFid;
 
     std::mutex mMutexMap;
+
+private:
+    // serialize is recommended to be private
+    friend class boost::serialization::access;
+    template<class Archive>
+    void serialize(Archive &ar, const unsigned int version);
 };
 
 } //namespace ORB_SLAM
