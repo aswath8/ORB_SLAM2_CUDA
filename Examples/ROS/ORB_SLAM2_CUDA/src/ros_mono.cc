@@ -56,6 +56,23 @@ public:
     ORB_SLAM2::SlamData* mpSLAMDATA;
 };
 
+//ORB_SLAM2::System* SLAMp;
+ros::ServiceServer service_server_;
+
+/*
+bool SaveMapSrv (orb_slam2_ros::SaveMap::Request &req, orb_slam2_ros::SaveMap::Response &res) {
+  res.success = SLAM.SaveMap(req.name);
+
+  if (res.success) {
+    ROS_INFO_STREAM ("Map was saved as " << req.name);
+  } else {
+    ROS_ERROR ("Map could not be saved.");
+  }
+
+  return res.success;
+}
+*/
+
 int main(int argc, char **argv)
 {
     ros::init(argc, argv, "Mono");
@@ -89,6 +106,7 @@ int main(int argc, char **argv)
     
     // Create SLAM system. It initializes all system threads and gets ready to process frames.
     ORB_SLAM2::System SLAM(argv[1],argv[2],ORB_SLAM2::System::MONOCULAR, bUseViewer);
+    //SLAMp = &SLAM;
 
     ros::NodeHandle nodeHandler;
 
@@ -97,11 +115,14 @@ int main(int argc, char **argv)
     ImageGrabber igb(&SLAM, &SLAMDATA);  
     
     ros::Subscriber sub = nodeHandler.subscribe("/camera/image_raw", 1, &ImageGrabber::GrabImage,&igb);
+    //service_server_ = nodeHandler.advertiseService("/save_map", &Node::SaveMapSrv);
 
     ros::spin();
 
     // Stop all threads
     SLAM.Shutdown();
+
+    SLAM.SaveMap(MAP_SAVE_FILE_DIR);
 
     SLAM.SaveKeyFrameTrajectoryTUM(KEYFRAME_TRAJECTORY_TUM_SAVE_FILE_DIR);
 

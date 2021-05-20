@@ -41,6 +41,7 @@
 #define FPS 30.0f
 
 #define KEYFRAME_TRAJECTORY_TUM_SAVE_FILE_DIR "/home/aswath/ORB_SLAM2_CUDA/test_results/Mono_KeyFrameTrajectory.txt"
+#define MAP_SAVE_FILE_DIR "/home/aswath/map.bin"
 
 namespace ORB_SLAM2
 {
