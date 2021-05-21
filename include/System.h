@@ -90,7 +90,7 @@ public:
     // Reset the system (clear map)
     void Reset();
     
-    void SaveMap(const string &filename);
+    void SaveMap(const std::string filename);
 
 
     // All threads will be requested to finish.

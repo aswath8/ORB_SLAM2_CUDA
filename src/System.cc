@@ -72,7 +72,7 @@ System::System(const string &strVocFile, const string &strSettingsFile, const eS
     }
     cout << "Vocabulary loaded!" << endl << endl;
 
-    if (LoadMap("/home/aswath/ORB_SLAM2_CUDA/map.bin")) {
+    if (LoadMap("/home/aswath/map.bin")) {
         std::cout << "Using loaded map with " << mpMap->MapPointsInMap() << " points\n" << std::endl;
     }
     else {
@@ -119,7 +119,6 @@ System::System(const string &strVocFile, const string &strSettingsFile, const eS
     mpLoopCloser->SetTracker(mpTracker);
     mpLoopCloser->SetLocalMapper(mpLocalMapper);
 
-    SaveMap("/home/aswath/ORB_SLAM2_CUDA/map.bin")
 }
 
 cv::Mat System::TrackStereo(const cv::Mat &imLeft, const cv::Mat &imRight, const double &timestamp)
@@ -276,19 +275,17 @@ void System::Reset()
 }
 
 
-void System::SaveMap(const string &filename) {
+void System::SaveMap(const std::string filename) {
     unique_lock<mutex>MapPointGlobal(MapPoint::mGlobalMutex);
     std::ofstream out(filename, std::ios_base::binary);
     if (!out) {
         std::cerr << "cannot write to map file: " << filename << std::endl;
-        return false;
     }
 
     const rlim_t kNewStackSize = 64L * 1024L * 1024L;   // min stack size = 64 Mb
     const rlim_t kDefaultCallStackSize = GetCurrentCallStackSize();
     if (!SetCallStackSize(kNewStackSize)) {
         std::cerr << "Error changing the call stack size; Aborting" << std::endl;
-        return false;
     }
 
     try {
@@ -301,22 +298,18 @@ void System::SaveMap(const string &filename) {
     } catch (const std::exception &e) {
         std::cerr << e.what() << std::endl;
         SetCallStackSize(kDefaultCallStackSize);
-        return false;
     } catch (...) {
         std::cerr << "Unknows exeption" << std::endl;
         SetCallStackSize(kDefaultCallStackSize);
-        return false;
     }
 
     SetCallStackSize(kDefaultCallStackSize);
-    return true;
 }
 
 
 
 void System::Shutdown()
 {
-    SaveMap("/home/aswath/map.bin");
     mpLocalMapper->RequestFinish();
     mpLoopCloser->RequestFinish();
 
