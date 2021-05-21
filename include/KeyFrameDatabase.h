@@ -43,7 +43,8 @@ class Frame;
 class KeyFrameDatabase
 {
 public:
-    KeyFrameDatabase();
+   // for serialization
+    KeyFrameDatabase(){}
     KeyFrameDatabase(const ORBVocabulary &voc);
     void SetORBvocabulary(ORBVocabulary *porbv) {mpVoc=porbv;}
    void add(KeyFrame* pKF);

@@ -45,6 +45,7 @@ class KeyFrameDatabase;
 class KeyFrame
 {
 public:
+    KeyFrame();
     KeyFrame(Frame &F, Map* pMap, KeyFrameDatabase* pKFDB);
     void SetORBvocabulary(ORBVocabulary *porbv) {mpORBvocabulary=porbv;}
     // Pose functions
@@ -117,7 +118,7 @@ public:
     static bool lId(KeyFrame* pKF1, KeyFrame* pKF2){
         return pKF1->mnId<pKF2->mnId;
     }
-    
+
 private:
     // serialize is recommended to be private
     friend class boost::serialization::access;
