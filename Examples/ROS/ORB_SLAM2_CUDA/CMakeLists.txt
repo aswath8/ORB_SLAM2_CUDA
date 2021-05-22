@@ -90,7 +90,7 @@ ${PCL_LIBRARIES}
 ${BOOST_SERIALIZATION}
 ${PROJECT_SOURCE_DIR}/../../../Thirdparty/DBoW2/lib/libDBoW2.so
 ${PROJECT_SOURCE_DIR}/../../../Thirdparty/g2o/lib/libg2o.so
-${PROJECT_SOURCE_DIR}/../../../lib/libORB_SLAM2_CUDA.so
+${PROJECT_SOURCE_DIR}/../../../lib/libORB_SLAM2_CUDA_Project.so
 )
 
 
