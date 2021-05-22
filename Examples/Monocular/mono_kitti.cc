@@ -25,6 +25,8 @@
 #include<fstream>
 #include<chrono>
 #include<iomanip>
+#include <boost/archive/binary_oarchive.hpp>
+#include <boost/archive/binary_iarchive.hpp>
 
 #include<opencv2/core/core.hpp>
 

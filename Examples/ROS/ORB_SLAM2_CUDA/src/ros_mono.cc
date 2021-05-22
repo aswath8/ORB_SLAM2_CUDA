@@ -121,9 +121,7 @@ int main(int argc, char **argv)
 
     // Stop all threads
     SLAM.Shutdown();
-
     SLAM.SaveMap(MAP_SAVE_FILE_DIR);
-
     SLAM.SaveKeyFrameTrajectoryTUM(KEYFRAME_TRAJECTORY_TUM_SAVE_FILE_DIR);
 
     ros::shutdown();

@@ -275,7 +275,9 @@ void System::Reset()
 }
 
 
-void System::SaveMap(const std::string filename) {
+void System::SaveMap(const std::string &filename) {
+    cout << endl << "Saving Map to " << filename << " ..." << endl;
+
     unique_lock<mutex>MapPointGlobal(MapPoint::mGlobalMutex);
     std::ofstream out(filename, std::ios_base::binary);
     if (!out) {
@@ -310,6 +312,7 @@ void System::SaveMap(const std::string filename) {
 
 void System::Shutdown()
 {
+
     mpLocalMapper->RequestFinish();
     mpLoopCloser->RequestFinish();
 
@@ -401,6 +404,7 @@ void System::SaveTrajectoryTUM(const string &filename)
 
 void System::SaveKeyFrameTrajectoryTUM(const string &filename)
 {
+
     cout << endl << "Saving keyframe trajectory to " << filename << " ..." << endl;
 
     vector<KeyFrame*> vpKFs = mpMap->GetAllKeyFrames();
